@@ -1,7 +1,12 @@
+"""
+TODO add announcements, station
+"""
 from django.db import models
 
 # Create your models here.
 
+class Score(models.Model):
+    score = models.IntegerField()
 
 class Troop(models.Model):
     """
@@ -23,18 +28,18 @@ class Patrol(models.Model):
     """
     name = models.CharField(max_length=128)
     troop = models.ForeignKey('backend.Troop', on_delete=models.CASCADE)
-
+    score = models.ForeignKey('backend.Score')
     def __str__(self):
         return f"Patrol {self.name} - {self.troop.number}"
 
 
 class Scout(models.Model):
-    """
-    A scout
-    """
+
+    name =  models.CharField(max_length=128)
+    patrol = models.ForeignKey('backend.Troop', on_delete=models.CASCADE)
+    score = models.ForeignKey('backend.Score')
 
 
-class Score(models.Model):
-    """
-    A score
-    """
+class Station(models.Model):
+    name = models.CharField(max_length=128)
+
