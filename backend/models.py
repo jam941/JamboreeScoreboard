@@ -7,6 +7,8 @@ from django.db import models
 
 class Score(models.Model):
     score = models.IntegerField()
+    
+
 
 class Troop(models.Model):
     """
