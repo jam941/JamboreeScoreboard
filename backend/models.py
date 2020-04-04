@@ -42,7 +42,10 @@ class Patrol(models.Model):
 
 class Scout(models.Model):
     name = models.CharField(max_length=128)
-    patrol = models.ForeignKey('backend.Troop', on_delete=models.CASCADE)
+    patrol = models.ForeignKey('backend.Patrol', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Station(models.Model):
