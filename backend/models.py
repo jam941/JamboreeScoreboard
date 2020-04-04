@@ -7,7 +7,9 @@ from django.db import models
 
 class Score(models.Model):
     score = models.IntegerField()
-    
+    submit_date = models.DateTimeField()
+    submit_user = models.CharField(max_length=128)
+    comment = models.CharField(max_length=256)
 
 
 class Troop(models.Model):
