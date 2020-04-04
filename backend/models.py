@@ -11,8 +11,8 @@ class Score(models.Model):
     submit_date = models.DateTimeField()
     submit_user = models.CharField(max_length=128)
     comment = models.CharField(max_length=256)
-    scout = models.ForeignKey('backend.Scout', null=True)
-    patrol = models.ForeignKey('backend.Patrol', null=True)
+    scout = models.ForeignKey('backend.Scout', null=True, on_delete=models.CASCADE)
+    patrol = models.ForeignKey('backend.Patrol', null=True, on_delete=models.CASCADE)
 
 
 class Troop(models.Model):
