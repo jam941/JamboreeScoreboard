@@ -3,6 +3,7 @@ TODO add announcements, station
 """
 from django.db import models
 
+
 # Create your models here.
 
 class Score(models.Model):
@@ -10,6 +11,8 @@ class Score(models.Model):
     submit_date = models.DateTimeField()
     submit_user = models.CharField(max_length=128)
     comment = models.CharField(max_length=256)
+    scout = models.ForeignKey('backend.Scout', null=True)
+    patrol = models.ForeignKey('backend.Patrol', null=True)
 
 
 class Troop(models.Model):
@@ -32,18 +35,15 @@ class Patrol(models.Model):
     """
     name = models.CharField(max_length=128)
     troop = models.ForeignKey('backend.Troop', on_delete=models.CASCADE)
-    score = models.ForeignKey('backend.Score')
+
     def __str__(self):
         return f"Patrol {self.name} - {self.troop.number}"
 
 
 class Scout(models.Model):
-
-    name =  models.CharField(max_length=128)
+    name = models.CharField(max_length=128)
     patrol = models.ForeignKey('backend.Troop', on_delete=models.CASCADE)
-    score = models.ForeignKey('backend.Score')
 
 
 class Station(models.Model):
     name = models.CharField(max_length=128)
-
