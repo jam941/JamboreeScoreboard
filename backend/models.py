@@ -8,7 +8,7 @@ from django.db import models
 
 class Score(models.Model):
     score = models.IntegerField()
-    submit_date = models.DateTimeField()
+    submit_date = models.DateTimeField(auto_now_add=True)
     submit_user = models.CharField(max_length=128)
     comment = models.CharField(max_length=256)
     scout = models.ForeignKey('backend.Scout', null=True, on_delete=models.CASCADE)
