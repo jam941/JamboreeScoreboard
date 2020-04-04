@@ -1,1 +1,1 @@
-![Test Output](https://travis-ci.org/ChrisSoper1/JamboreeScoreboard.svg?branch=master "Test output")
+[![Build Status](https://travis-ci.com/jam941/JamboreeScoreboard.svg?branch=master)](https://travis-ci.com/jam941/JamboreeScoreboard)
