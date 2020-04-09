@@ -2,18 +2,42 @@
     <div>
         <label>
             submit user
-            <input type="text" v-model="form.submit_user"/>
-            {{form.submit_user}}
+
+            <select type="text" v-model="form.submit_user" >
+                <option v-for ="scout in scouts">{{scout.name}}</option>
+            </select>
+
+
 
         </label>
+        <div>
+        comment
         <label>
-            comment
-            <input type="text" v-model="form.comment"/>
+            Good turn
+            <input type="radio" name="comment" value="good turn" v-model="form.comment"/>
         </label>
         <label>
-            score
-            <input type="text" v-model="form.score"/>
+            Completed activity
+            <input type="radio" name="comment" value="completed activity" v-model="form.comment"/>
         </label>
+            </div>
+
+        <div>
+        score
+
+        <label>
+            1
+            <input type="radio" name="score" value="1" v-model="form.score"/>
+        </label>
+        <label>
+            2
+            <input type="radio" name="score" value="2" v-model="form.score"/>
+        </label>
+        <label>
+            3
+            <input type="radio" name="score" value="3" v-model="form.score"/>
+        </label>
+        </div>
         <button type="button" v-on:click="submit">
             submit
         </button>
@@ -33,14 +57,15 @@
                     "score": null,
                     "submit_user": "",
                     "comment": "",
-                    "scout": "http://127.0.0.1:8000/scouts/1/",
+                    "scout": "",
                     "patrol": null
                 },
+                scouts: [],
 
             }
         },
         created() {
-
+            this.updateScouts();
         },
         methods: {
             updateScouts() {
