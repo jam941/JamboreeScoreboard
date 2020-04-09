@@ -11,7 +11,7 @@
             Scout
 
             <select type="text" v-model="form.scout" >
-                <option v-for ="scout in scouts"> {{scout}} </option>
+                <option v-for ="scout in scouts" v-bind:value="scout.url"> {{scout.name}} </option>
             </select>
 
         </label>
@@ -81,7 +81,7 @@
                     })
             },
             submit() {
-                this.form.scout = this.form.scout.url;
+                //this.form.scout = this.form.scout.url;
                 axios.post("http://127.0.0.1:8000/scores/",this.form)
             }
         }
