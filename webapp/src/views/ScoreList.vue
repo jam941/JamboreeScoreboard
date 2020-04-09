@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-for= "scout in scouts" >
-            {{scout.name}}
+        <div v-for= "score in scores" >
+            {{score}}
         </div>
     </div>
 </template>
@@ -12,18 +12,36 @@
         name: "ScoutList",
         data(){
             return {
-                scouts: []
+                rawScores: [],
+                scores: {}
             }
         },
         created() {
-            this.updateScouts()
+            this.updateScores();
+
+        },
+        updated(){
+
         },
         methods: {
-            updateScouts(){
-                axios.get("http://127.0.0.1:8000/scouts/")
+            updateScores(){
+                axios.get("http://127.0.0.1:8000/scores/")
                     .then((response) => {
-                        this.scouts = response.data
-                    })
+                         this.rawScores = response.data;
+                        console.log(this.rawScores);
+                        for ( let idx in this.rawScores){
+                            var score =this.rawScores[idx];
+
+                            if(score.patrol == null){
+
+
+                            }
+
+
+                        }
+                    });
+
+
             }
         }
     }

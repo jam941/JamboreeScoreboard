@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import ScoutList from "../views/ScoutList";
+import ScoutList from "../views/ScoreList";
 import ScoreSubmit from "../views/ScoreSubmit";
 
 Vue.use(VueRouter)
