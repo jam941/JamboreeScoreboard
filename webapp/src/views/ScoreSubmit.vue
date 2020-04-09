@@ -1,15 +1,21 @@
 <template>
     <div>
+        <div>
         <label>
-            submit user
+            Submitting User
+            <input type = "text" v-model = "form.submit_user">
+        </label>
+        </div>
+        <div>
+        <label>
+            Scout
 
-            <select type="text" v-model="form.submit_user" >
-                <option v-for ="scout in scouts">{{scout.name}}</option>
+            <select type="text" v-model="form.scout" >
+                <option v-for ="scout in scouts"> {{scout}} </option>
             </select>
 
-
-
         </label>
+        </div>
         <div>
         comment
         <label>
@@ -75,6 +81,7 @@
                     })
             },
             submit() {
+                this.form.scout = this.form.scout.url;
                 axios.post("http://127.0.0.1:8000/scores/",this.form)
             }
         }
