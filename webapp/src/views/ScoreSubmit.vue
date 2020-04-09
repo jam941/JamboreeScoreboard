@@ -10,12 +10,23 @@
         <label>
             Scout
 
-            <select type="text" v-model="form.scout" >
-                <option v-for ="scout in scouts" v-bind:value="scout.url"> {{scout.name}} </option>
+            <select id = "scout" type="text" v-model="form.scout" @change="enforcePatrol()" >
+                <option v-for ="scout in scouts" v-bind:value="scout"> {{scout.name}} </option>
             </select>
 
         </label>
         </div>
+
+        <div>
+            <label>
+                Patrol
+                <select type="text" v-model="form.patrol" >
+                    <option v-for ="patrol in patrols" v-bind:value="patrol"> {{patrol.name}} </option>
+                </select>
+            </label>
+        </div>
+
+
         <div>
         comment
         <label>
@@ -64,9 +75,10 @@
                     "submit_user": "",
                     "comment": "",
                     "scout": "",
-                    "patrol": null
+                    "patrol": ""
                 },
                 scouts: [],
+                patrols: []
 
             }
         },
@@ -79,11 +91,24 @@
                     .then((response) => {
                         this.scouts = response.data
                     })
+                axios.get("http://127.0.0.1:8000/patrols/")
+                    .then((response) => {
+                        this.patrols = response.data
+                    })
             },
             submit() {
-                //this.form.scout = this.form.scout.url;
+                this.form.scout = this.form.scout.url;
+                this.form.patrol = this.form.patrol.url;
                 axios.post("http://127.0.0.1:8000/scores/",this.form)
+            },
+            enforcePatrol(){
+               var scout = document.getElementById("scout").value;
+
+            },
+            enforceScout(){
+
             }
+
         }
 
     }
