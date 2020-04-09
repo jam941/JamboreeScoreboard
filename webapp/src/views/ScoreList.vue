@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for= "score in scores" >
+        <div v-for= "score in rawScores" >
             {{score}}
         </div>
     </div>
@@ -29,16 +29,7 @@
                     .then((response) => {
                          this.rawScores = response.data;
                         console.log(this.rawScores);
-                        for ( let idx in this.rawScores){
-                            var score =this.rawScores[idx];
 
-                            if(score.patrol == null){
-
-
-                            }
-
-
-                        }
                     });
 
 

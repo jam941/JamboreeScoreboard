@@ -6,11 +6,12 @@
             <input type = "text" v-model = "form.submit_user">
         </label>
         </div>
+
         <div>
         <label>
             Scout
 
-            <select id = "scout" type="text" v-model="form.scout" @change="enforcePatrol()" >
+            <select name = "scout" type="text" v-model="form.scout" @change="enforcePatrol()" >
                 <option v-for ="scout in scouts" v-bind:value="scout"> {{scout.name}} </option>
             </select>
 
@@ -20,7 +21,7 @@
         <div>
             <label>
                 Patrol
-                <select type="text" v-model="form.patrol" >
+                <select name="patrol" type="text" v-model="form.patrol" id = "patrol" @change="enforceScout()" >
                     <option v-for ="patrol in patrols" v-bind:value="patrol"> {{patrol.name}} </option>
                 </select>
             </label>
@@ -89,11 +90,13 @@
             updateScouts() {
                 axios.get("http://127.0.0.1:8000/scouts/")
                     .then((response) => {
-                        this.scouts = response.data
+                        this.scouts = response.data;
+                        this.scouts.push({ name:null, url:null});
                     })
                 axios.get("http://127.0.0.1:8000/patrols/")
                     .then((response) => {
-                        this.patrols = response.data
+                        this.patrols = response.data;
+                        this.patrols.push({ name:null, url:null});
                     })
             },
             submit() {
@@ -102,7 +105,8 @@
                 axios.post("http://127.0.0.1:8000/scores/",this.form)
             },
             enforcePatrol(){
-               var scout = document.getElementById("scout").value;
+
+               this.form.patrol = { name:null, url:null}
 
             },
             enforceScout(){
