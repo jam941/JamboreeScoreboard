@@ -7,6 +7,7 @@ router.register(r'troops', views.TroopViewSet)
 router.register(r'patrols', views.PatrolViewSet)
 router.register(r'scouts', views.ScoutViewSet)
 router.register(r'scores', views.ScoreViewSet)
+router.register(r'scout-score', views.ScoutScoreViewSet)
 
 
 

@@ -8,14 +8,14 @@
         </div>
 
         <div>
-        <label>
-            Scout
+            <label>
+                Scout
 
-            <select name = "scout" type="text" v-model="form.scout" @change="enforcePatrol()" >
-                <option v-for ="scout in scouts" v-bind:value="scout"> {{scout.name}} </option>
-            </select>
+                <select name = "scout" type="text" v-model="form.scout" @change="enforcePatrol()" >
+                    <option v-for ="scout in scouts" v-bind:value="scout"> {{scout.name}} </option>
+                </select>
 
-        </label>
+            </label>
         </div>
 
         <div>
@@ -99,21 +99,30 @@
                         this.patrols.push({ name:null, url:null});
                     })
             },
+
             submit() {
                 this.form.scout = this.form.scout.url;
                 this.form.patrol = this.form.patrol.url;
                 axios.post("http://127.0.0.1:8000/scores/",this.form)
             },
+
             enforcePatrol(){
 
                this.form.patrol = { name:null, url:null}
 
             },
+
             enforceScout(){
 
             }
 
+        },
+        watch:{
+            form(){
+
+            }
         }
+
 
     }
 

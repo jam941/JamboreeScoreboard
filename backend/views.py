@@ -1,9 +1,9 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
 
 from backend.models import Troop, Patrol, Scout, Score
-from backend.serializers import TroopSerializer, PatrolSerializer, ScoutSerializer, ScoreSerializer
+from backend.serializers import TroopSerializer, PatrolSerializer, ScoutSerializer, ScoreSerializer, ScoreScoutSerializer
+from django.db.models import Sum
 
 
 class TroopViewSet(viewsets.ReadOnlyModelViewSet):
@@ -32,10 +32,23 @@ class ScoutViewSet(viewsets.ModelViewSet):
     serializer_class = ScoutSerializer
     permission_classes = [permissions.AllowAny]
 
+
 class ScoreViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
     queryset = Score.objects.all()
     serializer_class = ScoreSerializer
+    permission_classes = [permissions.AllowAny]
+
+
+class ScoutScoreViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Scout.objects.all().values(
+        "name",
+        "patrol__name",
+        "patrol__troop__number"
+    ).annotate(
+        Sum("score__score")
+    )
+    serializer_class = ScoreScoutSerializer
     permission_classes = [permissions.AllowAny]
