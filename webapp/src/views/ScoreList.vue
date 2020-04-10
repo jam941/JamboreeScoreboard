@@ -1,15 +1,17 @@
 <template>
     <div>
-        <div v-for= "score in rawScores" >
-            {{score}}
-        </div>
+        <scout-rank/>
     </div>
 </template>
 
 <script>
     import axios from "axios"
+    import ScoutRank from "../components/ScoutRank";
     export default {
         name: "ScoutList",
+        components: {
+            ScoutRank
+        },
         data(){
             return {
                 rawScores: [],
