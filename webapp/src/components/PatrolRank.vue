@@ -44,7 +44,7 @@
                     .then((response) => {
                         this.scores = response.data;
                         this.scores.sort(function (a, b) {
-                            return b.score - a.score;
+                            return b.total_score - a.total_score;
                         });
                         var count = 1;
                         for (var i in this.scores) {
