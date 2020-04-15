@@ -1,15 +1,26 @@
 <template>
     <div>
-        <scout-rank/>
+        <div>
+            <scout-rank/>
+        </div>
+
+        Patrol list
+
+        <div>
+            <PatrolRank/>
+        </div>
+
     </div>
 </template>
 
 <script>
     import axios from "axios"
     import ScoutRank from "../components/ScoutRank";
+    import PatrolRank from "../components/PatrolRank";
     export default {
         name: "ScoutList",
         components: {
+            PatrolRank,
             ScoutRank
         },
         data(){
