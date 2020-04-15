@@ -3,7 +3,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">Place</th>
                 <th scope="col">Scout Name</th>
                 <th scope="col">Troop Number</th>
                 <th scope="col">Patrol Name</th>
@@ -12,7 +12,7 @@
             </thead>
             <tbody>
             <tr v-for="score in scores">
-                <th scope="row">1</th>
+                <th scope="row">{{score.id}}</th>
                 <td>{{score.scout_name}}</td>
                 <td>{{score.troop_number}}</td>
                 <td>{{score.patrol_name}}</td>
@@ -37,7 +37,8 @@
 
         data(){
             return{
-                scores:[]
+                scores:[],
+                places: 0
             }
         },
         created(){
@@ -52,9 +53,20 @@
                         this.scores.sort(function(a,b){
                             return b.score-a.score;
                         })
+                        this.places = this.scores.length;
+                        if(this.places>19){
+                            this.places =19;
+                            this.scores = this.scores.slice(0,20);
+                        }
+                        var count = 1;
+                        for(var i in this.scores){
+                            this.scores[i].id = count++;
+                        }
+
                     });
 
-            }
+            },
+
 
         }
 
