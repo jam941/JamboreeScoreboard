@@ -49,7 +49,9 @@
                 axios.get("http://127.0.0.1:8000/scout-score/")
                     .then((response) => {
                         this.scores = response.data;
-                       
+                        this.scores.sort(function(a,b){
+                            return b.score-a.score;
+                        })
                     });
 
             }
