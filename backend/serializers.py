@@ -34,3 +34,6 @@ class ScoreScoutSerializer(serializers.Serializer):
     patrol_name = serializers.CharField(source='patrol__name')
     score = serializers.IntegerField(source="score__score__sum")
 
+class ScorePatrolSerializer(serializers.Serializer):
+    patrol_name = serializers.CharField(source='name')
+    total_score = serializers.IntegerField()

@@ -5,6 +5,8 @@ from django.db import models
 
 
 # Create your models here.
+from django.db.models import Sum
+
 
 class Score(models.Model):
     score = models.IntegerField()
@@ -39,6 +41,12 @@ class Patrol(models.Model):
     def __str__(self):
         return f"Patrol {self.name} - {self.troop.number}"
 
+    @property
+    def total_score(self):
+        a = list(self.scout_set.annotate( score_scout = Sum("score__score")).values_list('score_scout', flat=True))
+        b= list(self.score_set.annotate(score_patrol=Sum('score')).values_list('score_patrol',flat=True))
+
+        return sum([*a,*b])
 
 class Scout(models.Model):
     name = models.CharField(max_length=128)

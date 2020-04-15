@@ -8,7 +8,7 @@ router.register(r'patrols', views.PatrolViewSet)
 router.register(r'scouts', views.ScoutViewSet)
 router.register(r'scores', views.ScoreViewSet)
 router.register(r'scout-score', views.ScoutScoreViewSet)
-
+router.register(r'patrol-score', views.PatrolScoreViewSet)
 
 
 # Wire up our API using automatic URL routing.
