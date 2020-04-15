@@ -41,7 +41,7 @@
                 axios.get("http://127.0.0.1:8000/scores/")
                     .then((response) => {
                          this.rawScores = response.data;
-                        console.log(this.rawScores);
+
 
                     });
 

@@ -1,33 +1,57 @@
 <template>
+
     <div>
-        <div class="list-group" v-for= "score in scores" >
-            <div class = "list-group-item">
-                {{score}}
-            </div>
-        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Place</th>
+                <th scope="col">Patrol Name</th>
+                <th scope="col">Score</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="score in scores">
+                <th scope="row">{{score.id}}</th>
+                <td>{{score.patrol_name}}</td>
+                <td>{{score.total_score}}</td>
+
+            </tr>
+            </tbody>
+        </table>
     </div>
+
 </template>
 
 <script>
     import axios from "axios"
+
     export default {
         name: "PatrolRank",
 
-        data(){
-            return{
-                scores:[]
+        data() {
+            return {
+                scores: []
             }
         },
-        created(){
+        created() {
             this.updateData()
         },
-        methods:{
+        methods: {
 
-            updateData(){
+            updateData() {
                 axios.get("http://127.0.0.1:8000/patrol-score/")
                     .then((response) => {
                         this.scores = response.data;
+                        this.scores.sort(function (a, b) {
+                            return b.score - a.score;
+                        });
+                        var count = 1;
+                        for (var i in this.scores) {
+                            this.scores[i].id = count++;
+                        }
                     });
+
 
             }
 
