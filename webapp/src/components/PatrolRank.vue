@@ -3,6 +3,7 @@
     <div>
         <table class="table">
             <thead>
+            <caption>Patrol Rankings</caption>
             <tr>
                 <th scope="col">Place</th>
                 <th scope="col">Patrol Name</th>

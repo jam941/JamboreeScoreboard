@@ -2,6 +2,7 @@
     <div>
         <table class="table">
             <thead>
+            <caption>Scout Rankings</caption>
             <tr>
                 <th scope="col">Place</th>
                 <th scope="col">Scout Name</th>
