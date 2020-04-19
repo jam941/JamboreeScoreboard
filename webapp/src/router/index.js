@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import ScoreList from "../views/ScoreList";
 import ScoreSubmit from "../views/ScoreSubmit";
+import BarcodeRead from "../views/BarcodeRead";
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
         path: '/submit',
         name: 'Score Submit',
         component: ScoreSubmit
+    },
+    {
+        path: '/barcode',
+        name: 'Score Submit With barcode',
+        component: BarcodeRead
     },
     {
         path: '/about',

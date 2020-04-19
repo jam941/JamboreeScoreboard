@@ -4,9 +4,9 @@
             <scout-rank/>
         </div>
 
-        Patrol list
 
-        <div>
+
+        <div class="lower">
             <PatrolRank/>
         </div>
 
