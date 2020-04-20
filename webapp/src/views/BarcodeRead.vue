@@ -1,0 +1,50 @@
+<template>
+    <div>
+        <video id="preview"></video>
+        <button type = "button" v-on:click="startScanning"> Start scanning</button>
+    </div>
+</template>
+
+<script>
+    import Instascan from 'instascan'
+    export default {
+        name: "BarcodeRead",
+
+        data(){
+            return{
+                scanner: null,
+                scannedInfo: {scout:null, patrol:null},
+            }
+        },
+        mounted() {
+            this.scanner = new Instascan.Scanner({ video: document.getElementById('preview'), backgroundScan: false,  });
+
+        },
+        methods: {
+            startScanning(){
+                this.scanner.addListener('scan',this.finishedScanning);
+                Instascan.Camera.getCameras().then(  (cameras) => {
+                    if (cameras.length > 0) {
+                        this.scanner.start(cameras[0]);
+                    } else {
+                        console.error('No cameras found.');
+                    }
+                }).catch(function (e) {
+                    console.error(e);
+                });
+            },
+            finishedScanning(content){
+                this.scanner.removeListener('scan',this.finishedScanning);
+                this.scanner.stop();
+                this.scannedInfo = JSON.parse(content);
+                
+            }
+        }
+    }
+
+
+</script>
+
+<style scoped>
+
+</style>
