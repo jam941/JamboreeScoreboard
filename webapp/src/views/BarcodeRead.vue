@@ -1,7 +1,23 @@
 <template>
     <div>
-        <video id="preview"></video>
+        <div class="row">
+            <video id="preview"></video>
+
+
+        </div>
+        <div class="row">
+
+            <div class="col">
+                {{this.scannedInfo.scout}}
+            </div>
+
+            <div class="col">
+                {{this.scannedInfo.patrol}}
+            </div>
+
+        </div>
         <button type = "button" v-on:click="startScanning"> Start scanning</button>
+
     </div>
 </template>
 
@@ -37,7 +53,7 @@
                 this.scanner.removeListener('scan',this.finishedScanning);
                 this.scanner.stop();
                 this.scannedInfo = JSON.parse(content);
-                
+
             }
         }
     }
