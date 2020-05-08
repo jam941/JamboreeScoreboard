@@ -56,17 +56,14 @@
             },
             finishedScanning(content) {
                 this.scanner.removeListener('scan', this.finishedScanning);
-                this.playerSound("goodScan");
+                this.playerSound(this.goodBeep);
                 this.scanner.stop();
                 this.scannedInfo = JSON.parse(content);
-                console.log("Scan completed");
+                
 
             },
-            playerSound(soundId) {
-                console.log("beep");
-                console.log("The sound path is: ", this.goodBeep);
-                console.log(window);
-                this.goodBeep.play();
+            playerSound(sound) {
+                sound.play();
             }
         }
     }
