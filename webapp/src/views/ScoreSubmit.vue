@@ -103,7 +103,8 @@
             submit() {
                 this.form.scout = this.form.scout.url;
                 this.form.patrol = this.form.patrol.url;
-                axios.post("http://127.0.0.1:8000/scores/",this.form)
+                this.$store.commit("addScore",this.form);
+
             },
 
             enforcePatrol(){

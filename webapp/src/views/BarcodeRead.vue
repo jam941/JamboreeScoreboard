@@ -59,7 +59,7 @@
                 this.playerSound(this.goodBeep);
                 this.scanner.stop();
                 this.scannedInfo = JSON.parse(content);
-                
+
 
             },
             playerSound(sound) {

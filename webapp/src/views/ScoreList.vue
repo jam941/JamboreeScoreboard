@@ -5,7 +5,6 @@
         </div>
 
 
-
         <div class="lower">
             <PatrolRank/>
         </div>
@@ -17,13 +16,14 @@
     import axios from "axios"
     import ScoutRank from "../components/ScoutRank";
     import PatrolRank from "../components/PatrolRank";
+
     export default {
         name: "ScoutList",
         components: {
             PatrolRank,
             ScoutRank
         },
-        data(){
+        data() {
             return {
                 rawScores: [],
                 scores: {}
@@ -33,17 +33,15 @@
             this.updateScores();
 
         },
-        updated(){
+        updated() {
 
         },
         methods: {
-            updateScores(){
+            updateScores() {
                 axios.get("http://127.0.0.1:8000/scores/")
                     .then((response) => {
-                         this.rawScores = response.data;
+                        this.rawScores = response.data;
                     });
-
-
             }
         }
     }
