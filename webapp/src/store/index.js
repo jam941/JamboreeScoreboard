@@ -15,7 +15,7 @@ const store = new Vuex.Store({
         flushQueue(state) {
             let queue = state.submissionQueue;
             let item = queue.pop();
-;            while (item !== undefined) {
+            while (item !== undefined) {
 
                 axios.post("http://127.0.0.1:8000/scores/", item).catch(error => {
                     console.error(error);
