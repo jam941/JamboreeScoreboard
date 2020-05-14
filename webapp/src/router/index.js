@@ -10,19 +10,10 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        name: 'Home',
-        component: Home
-    },
-    {
-        path: '/scores',
-        name: 'Scouts',
+        name: 'Scores',
         component: ScoreList
     },
-    {
-        path: '/submit',
-        name: 'Score Submit',
-        component: ScoreSubmit
-    },
+
     {
         path: '/barcode',
         name: 'Score Submit With barcode',
