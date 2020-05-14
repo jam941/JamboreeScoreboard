@@ -1,8 +1,8 @@
 <template>
     <div>
+        <p class="centerCaption">Scout Rankings</p>
         <table class="table">
-            <thead>
-            <caption class="tableHead">Scout Rankings</caption>
+
             <thead class = "thead-dark">
             <tr>
                 <th scope="col">Place</th>
@@ -83,5 +83,10 @@
     .tableHead{
         margin-left: 50%;
         margin-right: -50%;
+    }
+    .centerCaption{
+        padding-right: 100px;
+        vertical-align: top;
+        text-align: center;
     }
 </style>

@@ -1,9 +1,9 @@
 <template>
 
     <div>
+        <p class="centerCaption">Patrol Rankings</p>
         <table class="table">
-            <thead>
-            <caption>Patrol Rankings</caption>
+
             <thead class = "thead-dark">
             <tr>
                 <th scope="col">Place</th>
@@ -62,5 +62,9 @@
 </script>
 
 <style scoped>
-
+    .centerCaption{
+        padding-right: 100px;
+        vertical-align: top;
+        text-align: center;
+    }
 </style>
