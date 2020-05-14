@@ -4,6 +4,7 @@
         <table class="table">
             <thead>
             <caption>Patrol Rankings</caption>
+            <thead class = "thead-dark">
             <tr>
                 <th scope="col">Place</th>
                 <th scope="col">Patrol Name</th>

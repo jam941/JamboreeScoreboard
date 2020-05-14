@@ -1,21 +1,51 @@
 <template>
     <div>
-        <div class="row">
-            <video id="preview"></video>
-
-
-        </div>
-        <div class="row">
-
-            <div class="col">
-                {{this.scannedInfo.scout}}
+        <div class ="col">
+            <div>
+                comment
+                <label>
+                    Good turn
+                    <input type="radio" name="comment" value="good turn" v-model="form.comment"/>
+                </label>
+                <label>
+                    Completed activity
+                    <input type="radio" name="comment" value="completed activity" v-model="form.comment"/>
+                </label>
             </div>
 
-            <div class="col">
-                {{this.scannedInfo.patrol}}
-            </div>
+            <div>
+                score
 
+                <label>
+                    1
+                    <input type="radio" name="score" value="1" v-model="form.score"/>
+                </label>
+                <label>
+                    2
+                    <input type="radio" name="score" value="2" v-model="form.score"/>
+                </label>
+                <label>
+                    3
+                    <input type="radio" name="score" value="3" v-model="form.score"/>
+                </label>
+            </div>
         </div>
+        <div class ="col">
+            <div class="row">
+                <video id="preview"></video>
+            </div>
+            <div class="row">
+
+                <div class="col">
+                    {{this.scannedInfo.scout}}
+                </div>
+
+                <div class="col">
+                    {{this.scannedInfo.patrol}}
+                </div>
+            </div>
+        </div>
+
 
         <button type="button" v-on:click="startScanning"> Start scanning</button>
 
@@ -34,6 +64,13 @@
                 scanner: null,
                 scannedInfo: {scout: null, patrol: null},
                 goodBeep: null,
+                "form": {
+                    "score": null,
+                    "submit_user": "",
+                    "comment": "",
+                    "scout": "",
+                    "patrol": ""
+                },
             }
         },
         mounted() {
@@ -59,8 +96,9 @@
                 this.playerSound(this.goodBeep);
                 this.scanner.stop();
                 this.scannedInfo = JSON.parse(content);
-
-
+            },
+            stopScanning(content){
+                this.scanner.stop();
             },
             playerSound(sound) {
                 sound.play();

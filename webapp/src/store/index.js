@@ -14,19 +14,12 @@ const store = new Vuex.Store({
         },
         flushQueue(state) {
             let queue = state.submissionQueue;
-
             let item = queue.pop();
-            console.group("itemlogs");
-            console.debug(item);
-            console.info(item);
-            console.warn(item);
-            console.error(item);
-            console.log(item);
-            console.groupEnd()
 ;            while (item !== undefined) {
 
                 axios.post("http://127.0.0.1:8000/scores/", item).catch(error => {
                     console.error(error);
+                    //TODO implement resend after 30 seconds
                 })
                 item = queue.pop();
             }

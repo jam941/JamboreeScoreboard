@@ -2,7 +2,8 @@
     <div>
         <table class="table">
             <thead>
-            <caption>Scout Rankings</caption>
+            <caption class="tableHead">Scout Rankings</caption>
+            <thead class = "thead-dark">
             <tr>
                 <th scope="col">Place</th>
                 <th scope="col">Scout Name</th>
@@ -79,5 +80,8 @@
 </script>
 
 <style scoped>
-
+    .tableHead{
+        margin-left: 50%;
+        margin-right: -50%;
+    }
 </style>
