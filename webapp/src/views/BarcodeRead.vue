@@ -66,17 +66,13 @@
     <button v-on:click="stopScanning" id="stop" class="btn" v-bind:class="{'btn-danger':scanning}" v-bind:disabled="!scanning">Stop</button>
     <div class="col">
       <div class="row">
-        <video id="preview"></video>
-      </div>
-      <div class="row">
-
-        <div class="col">
-          {{this.scannedInfo.scout}}
+        <div class="position-relative  w-100">
+          <video id="preview"></video>
+          <span class="success-popup" v-if="justScanned">
+            <i class="fas fa-check-circle"></i>
+          </span>
         </div>
 
-        <div class="col">
-          {{this.scannedInfo.patrol}}
-        </div>
       </div>
     </div>
 
@@ -97,13 +93,14 @@
                 scannedInfo: {scout: null, patrol: null},
                 goodBeep: null,
                 "form": {
-                    "score": null,
+                    "score": 1,
                     "submit_user": "Jarred",
-                    "comment": "",
+                    "comment": "completed activity",
                     "scout": "",
                     "patrol": ""
                 },
                 scanning:false,
+                justScanned:false,
             }
         },
         mounted() {
@@ -126,6 +123,10 @@
                 });
             },
             scanCode(content) {
+                this.justScanned=true;
+                setTimeout(()=>{
+                    this.justScanned=false;
+                },1000);
                 this.playerSound(this.goodBeep);
                 this.scannedInfo = JSON.parse(content)
                 if (this.scannedInfo.patrol == null) {
@@ -135,6 +136,10 @@
                 }
 
                 this.$store.commit("addScore", this.form);
+                this.stopScanning();
+                setTimeout(()=>{
+                    this.startScanning();
+                },500)
 
             },
             stopScanning(content) {
@@ -236,8 +241,19 @@
   }
 
   #preview{
-    max-width: 100%;
+    width: 100%;
     object-fit: scale-down;
+    z-index: 1;
+  }
+
+  .success-popup{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    color: greenyellow;
+    font-size: 3em;
   }
 
 </style>

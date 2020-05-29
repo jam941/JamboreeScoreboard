@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from backend.models import Troop, Patrol, Scout, Score
 
@@ -27,12 +28,22 @@ class ScoreSerializer(serializers.HyperlinkedModelSerializer):
         model = Score
         fields = '__all__'
 
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+
+        if (attrs.get("scout") is None and attrs.get("patrol") is None):
+            raise ValidationError("'scout' or 'patrol' must be provided")
+
+        if (attrs.get("scout") is not None and attrs.get("patrol") is not None):
+            raise ValidationError("'scout' and 'patrol' cannot both be provided")
+        return attrs
 
 class ScoreScoutSerializer(serializers.Serializer):
-    scout_name = serializers.CharField(source= 'name')
+    scout_name = serializers.CharField(source='name')
     troop_number = serializers.IntegerField(source='patrol__troop__number')
     patrol_name = serializers.CharField(source='patrol__name')
     score = serializers.IntegerField(source="score__score__sum")
+
 
 class ScorePatrolSerializer(serializers.Serializer):
     patrol_name = serializers.CharField(source='name')

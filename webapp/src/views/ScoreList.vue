@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <scout-rank/>
+            <scout-rank v-if="false"/>
         </div>
 
         <div class="lower">
