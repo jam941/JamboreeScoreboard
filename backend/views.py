@@ -22,7 +22,7 @@ class PatrolViewSet(viewsets.ModelViewSet):
     """
     queryset = Patrol.objects.all()
     serializer_class = PatrolSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class ScoutViewSet(viewsets.ModelViewSet):
@@ -31,7 +31,7 @@ class ScoutViewSet(viewsets.ModelViewSet):
     """
     queryset = Scout.objects.all()
     serializer_class = ScoutSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class ScoreViewSet(viewsets.ModelViewSet):
@@ -40,8 +40,9 @@ class ScoreViewSet(viewsets.ModelViewSet):
     """
     queryset = Score.objects.all()
     serializer_class = ScoreSerializer
-    permission_classes = [permissions.AllowAny]
-
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    def get_serializer_context(self):
+        return {'request': self.request}
 
 class ScoutScoreViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Scout.objects.all().values(

@@ -27,6 +27,7 @@ class ScoreSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Score
         fields = '__all__'
+        read_only_fields = ["submit_user"]
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
@@ -37,6 +38,11 @@ class ScoreSerializer(serializers.HyperlinkedModelSerializer):
         if (attrs.get("scout") is not None and attrs.get("patrol") is not None):
             raise ValidationError("'scout' and 'patrol' cannot both be provided")
         return attrs
+
+    def create(self, validated_data):
+        validated_data['submit_user'] = self.context.get('request').user.username
+        return super().create(validated_data)
+
 
 class ScoreScoutSerializer(serializers.Serializer):
     scout_name = serializers.CharField(source='name')
