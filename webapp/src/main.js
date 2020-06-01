@@ -4,9 +4,10 @@ import './registerServiceWorker'
 import router from './router'
 
 import store from './store'
-
-Vue.config.productionTip = false
-
+import axios from "axios"
+Vue.config.productionTip = false;
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.xsrfCookieName = 'csrftoken';
 new Vue({
   router,
   store,

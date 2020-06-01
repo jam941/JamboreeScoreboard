@@ -6,6 +6,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         submissionQueue: [],
+        loginToken: null
     },
     mutations: {
         addScore(state, score) {
@@ -23,6 +24,10 @@ const store = new Vuex.Store({
                 })
                 item = queue.pop();
             }
+        },
+        setLoginToken(state,token){
+            state.loginToken = token;
+            axios.defaults.headers.common = {'Authorization': `Token ${state.loginToken}`};
         }
 
     },
