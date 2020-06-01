@@ -25,11 +25,18 @@ const store = new Vuex.Store({
                 item = queue.pop();
             }
         },
-        setLoginToken(state,token){
+        setLoginToken(state, token) {
             state.loginToken = token;
             axios.defaults.headers.common = {'Authorization': `Token ${state.loginToken}`};
         }
 
+    },
+    getters: {
+        isLoggedIn: state => {
+
+            return state.loginToken !==null
+
+        }
     },
     actions: {},
     modules: {}

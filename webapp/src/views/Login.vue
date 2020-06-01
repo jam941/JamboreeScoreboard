@@ -58,6 +58,7 @@
                 goodBeep: null,
                 scanning: null,
                 scannedInfo: null,
+                justScanned:false,
             }
         },
         mounted() {
