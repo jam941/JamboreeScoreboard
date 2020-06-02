@@ -72,6 +72,9 @@
                     console.error(error);
                 }).then((response) => {
                     this.$store.commit("setLoginToken", response.data.token);
+                    axios.get("http://127.0.0.1:8000/account/").then(responseName => {
+                        this.$store.commit("setName",responseName.data[0].username)
+                    })
                     this.$router.push("/")
                 })
             },

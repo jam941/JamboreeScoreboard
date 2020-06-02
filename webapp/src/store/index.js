@@ -6,7 +6,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         submissionQueue: [],
-        loginToken: null
+        loginToken: null,
+        name: null,
     },
     mutations: {
         addScore(state, score) {
@@ -28,6 +29,10 @@ const store = new Vuex.Store({
         setLoginToken(state, token) {
             state.loginToken = token;
             axios.defaults.headers.common = {'Authorization': `Token ${state.loginToken}`};
+        },
+        setName(state,name){
+            state.name=name;
+
         }
 
     },
