@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework import permissions
 
 from backend.models import Troop, Patrol, Scout, Score
 from backend.serializers import TroopSerializer, PatrolSerializer, ScoutSerializer, ScoreSerializer, \
-    ScoreScoutSerializer, ScorePatrolSerializer
+    ScoreScoutSerializer, ScorePatrolSerializer, UserSerializer
 from django.db.models import Sum
 
 
@@ -59,3 +60,10 @@ class PatrolScoreViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Patrol.objects.all()
     serializer_class = ScorePatrolSerializer
     permission_classes = [permissions.AllowAny]
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    #queryset = User.objects.all()
+    def get_queryset(self):
+        return User.objects.filter(id=self.request.user.id)
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]

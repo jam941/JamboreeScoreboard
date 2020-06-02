@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 from backend.models import Troop, Patrol, Scout, Score
 
@@ -54,3 +55,8 @@ class ScoreScoutSerializer(serializers.Serializer):
 class ScorePatrolSerializer(serializers.Serializer):
     patrol_name = serializers.CharField(source='name')
     total_score = serializers.IntegerField()
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'

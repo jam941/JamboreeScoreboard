@@ -69,6 +69,19 @@ function checkAuthenticated(to, from, next) {
         return next();
     }
 }
+/**
+ * Returns if the current user can access the route
+ *
+ * @param {string} route - Route to check
+ */
+ export function canAccessRoute(route) {
+
+    let requireAuth = router.resolve(route).route.meta.requireAuth;
+    if (requireAuth && !store.getters.isLoggedIn) {
+        return false;
+    }
+    return true;
+}
 
 router.beforeEach(checkAuthenticated)
 export default router

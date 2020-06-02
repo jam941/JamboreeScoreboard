@@ -72,6 +72,7 @@
                     console.error(error);
                 }).then((response) => {
                     this.$store.commit("setLoginToken", response.data.token);
+                    this.$router.push("/")
                 })
             },
             startScanning() {

@@ -63,7 +63,7 @@
 
 <style scoped>
     .centerCaption{
-        padding-right: 100px;
+
         vertical-align: top;
         text-align: center;
     }
