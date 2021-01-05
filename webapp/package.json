@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.6.4",
     "instascan": "git+https://github.com/schmich/instascan.git#master",
     "register-service-worker": "^1.7.1",
